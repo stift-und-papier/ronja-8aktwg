@@ -8,8 +8,8 @@
 window.RONJA_INHALTE = {
   "seite": {
     "titel": "Ronjas Futterplan",
-    "untertitel": "Danke, dass du auf mich aufpasst! Hier steht alles, was du wissen musst – damit ich satt, gesund und glücklich bleibe.",
-    "fuss": "Mit Liebe (und Leckerli) gemacht. 🐾 Danke fürs Aufpassen!"
+    "untertitel": "Danke, dass du auf mich aufpasst! Hier steht alles, was du wissen musst, damit ich satt, gesund und glücklich bleibe.",
+    "fuss": "Mit Liebe (und einer Portion KI) gemacht. 🐾 Danke fürs Aufpassen!"
   },
   "vorhang": {
     "frage": "Auf wen passt du auf?",
@@ -18,25 +18,38 @@ window.RONJA_INHALTE = {
   "wichtig": {
     "titel": "Das Wichtigste auf einen Blick",
     "punkte": [
-      { "icon": "verbot", "fett": "Kein Pansen.", "text": "Verträgt sie nicht." },
-      { "icon": "teller", "fett": "Keine Tischreste.", "text": "Empfindlicher Magen!" },
-      { "icon": "pfoten", "fett": "Andere Hunde dabei?", "text": "Getrennt füttern." }
+      {
+        "icon": "teller",
+        "fett": "Keine Tischreste.",
+        "text": "Mein Magen ist ganz schön empfindlich..."
+      },
+      {
+        "icon": "pfoten",
+        "fett": "Andere Hunde dabei?",
+        "text": "Fütter mich lieber getrennt von den anderen. Sonst schlinge ich!"
+      }
     ]
   },
   "morgen": {
     "titel": "Guten Morgen!",
-    "intro": "Einen Wecker brauchst du nicht – das übernimmt Ronja. Morgens gibt es insgesamt ca. 400 g Nassfutter, aufgeteilt auf zwei Portionen von je ca. 200 g.",
+    "intro": "Einen Wecker brauchst du nicht, ich starre dich an, bis du wach wirst! Morgens gibt es insgesamt ca. 400 g Nassfutter, aufgeteilt auf zwei Portionen von je ca. 200 g.",
     "hinweis": "",
     "karten": [
       {
-        "icon": "wecker", "farbe": "apricot", "bild": "dose",
-        "titel": "Portion 1", "menge": "ca. 200 g",
-        "text": "Gibt’s, **sobald Ronja dich morgens wach macht**. Keine Sorge, das macht sie zuverlässig.",
+        "icon": "wecker",
+        "farbe": "apricot",
+        "bild": "dose",
+        "titel": "Portion 1",
+        "menge": "ca. 200 g",
+        "text": "Gibt’s, **sobald ich dich wachbekommen habe**. Keine Sorge, das bekomme ich schon hin! Danach können wir dann aber auch wieder kuscheln...",
         "liste": []
       },
       {
-        "icon": "napf", "farbe": "senf", "bild": "",
-        "titel": "Portion 2", "menge": "ca. 200 g",
+        "icon": "napf",
+        "farbe": "senf",
+        "bild": "",
+        "titel": "Portion 2",
+        "menge": "ca. 200 g",
         "text": "**Nach dem Gassigehen**, wenn ihr wieder zu Hause seid. In diese Portion kommt noch das Wellness-Programm:",
         "liste": [
           "**1 Messerspitze** MSM-Pulver",
@@ -53,26 +66,29 @@ window.RONJA_INHALTE = {
     "hinweis": "",
     "karten": [
       {
-        "icon": "keule", "farbe": "apricot", "bild": "",
-        "titel": "Ein Hühnerbein", "menge": "",
-        "text": "**Nach dem Gassigehen** gibt’s ein Hühnerbein. Das Highlight des Tages, mindestens.",
+        "icon": "keule",
+        "farbe": "apricot",
+        "bild": "",
+        "titel": "Ich bin daheim - Gib mir ein Hühnerbein!",
+        "menge": "",
+        "text": "**Nach dem Gassigehen** gibt’s ein Hühnerbein. Das Highlight des Tages!",
         "liste": []
       },
       {
-        "icon": "zucchini", "farbe": "senf", "bild": "kekse",
-        "titel": "Snacks zwischendurch", "menge": "",
-        "text": "Sind in Ordnung! Zum Beispiel **Zucchinistücke**, die mag sie gern. Ja, wirklich, Gemüse.",
+        "icon": "zucchini",
+        "farbe": "senf",
+        "bild": "kekse",
+        "titel": "Snacks zwischendurch",
+        "menge": "",
+        "text": "Sind in Ordnung! Zum Beispiel **Zucchinistücke**, die mag ich gern. Aber nicht zu viele Snacks, sonst werde ich dick.",
         "liste": []
       },
       {
-        "icon": "verbot", "farbe": "warnung", "bild": "",
-        "titel": "Bitte KEINEN Pansen", "menge": "",
-        "text": "Den verträgt sie nicht. Da bleiben wir hart.",
-        "liste": []
-      },
-      {
-        "icon": "teller", "farbe": "warnung", "bild": "",
-        "titel": "Nichts vom Tisch", "menge": "",
+        "icon": "teller",
+        "farbe": "warnung",
+        "bild": "",
+        "titel": "Nichts vom Tisch",
+        "menge": "",
         "text": "Keine Snacks vom Tisch oder Ähnliches. Sie hat einen **empfindlichen Magen** und fängt sonst an zu **schnorren**. Auch wenn der Blick herzzerreißend ist.",
         "liste": []
       }
@@ -85,27 +101,32 @@ window.RONJA_INHALTE = {
     "hinweis": "",
     "karten": [
       {
-        "icon": "napf", "farbe": "apricot", "bild": "sack",
-        "titel": "Abendessen", "menge": "ca. 150 g",
-        "text": "**ca. 150 g Trockenfutter**, dazu **ein kleiner Schwupps Orthohyl**.",
+        "icon": "napf",
+        "farbe": "apricot",
+        "bild": "sack",
+        "titel": "Abendessen",
+        "menge": "ca. 150 g",
+        "text": "**ca. 150 g Trockenfutter**",
+        "liste": [
+          "**Ein kleiner Schwupps Orthohyl**"
+        ]
+      },
+      {
+        "icon": "spielzeug",
+        "farbe": "creme",
+        "bild": "fnoet",
+        "titel": "Spielzeit mit Fnöt",
+        "menge": "",
+        "text": "Nach dem Abendessen werde ich meist **noch einmal aktiv** und möchte im Haus ein bisschen mit **Fnöt** spielen. Machst du mit?",
         "liste": []
       },
       {
-        "icon": "pfoten", "farbe": "senf", "bild": "",
-        "titel": "Andere Hunde dabei?", "menge": "",
-        "text": "Dann neigt sie zum **Schlingen**. Am besten **räumlich getrennt füttern**, dann kann jede in Ruhe genießen.",
-        "liste": []
-      },
-      {
-        "icon": "spielzeug", "farbe": "creme", "bild": "fnoet",
-        "titel": "Spielzeit mit Fnöt", "menge": "",
-        "text": "Nach dem Abendessen wird sie meist **noch einmal aktiv** und möchte im Haus ein bisschen mit ihrem Stofftier **Fnöt** spielen.",
-        "liste": []
-      },
-      {
-        "icon": "mond", "farbe": "nacht", "bild": "korb",
-        "titel": "Gute Nacht", "menge": "",
-        "text": "Normalerweise schläft sie in **ihrem Korb**. Manchmal kommt sie aber gern zum **Kuscheln ins Bett**.\n\nWenn du das nicht möchtest: **schick sie einfach runter**, das versteht sie gut. Normalerweise kommt sie sowieso nur nach Aufforderung ins Bett.",
+        "icon": "mond",
+        "farbe": "nacht",
+        "bild": "korb",
+        "titel": "Gute Nacht",
+        "menge": "",
+        "text": "Normalerweise schlafe ich in **meinem Korb**. Manchmal komme ich aber gern zum **Kuscheln ins Bett**.\n\nWenn du das nicht möchtest: **schick mich einfach runter**, das versteht ich schon. Normalerweise komme ich sowieso nur nach Aufforderung ins Bett.",
         "liste": []
       }
     ],
