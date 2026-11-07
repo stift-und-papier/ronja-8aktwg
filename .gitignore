@@ -1,0 +1,16 @@
+# Inspirationsbilder – werden NICHT veröffentlicht
+referenzen/
+
+# Test-Werkzeuge (nur lokal)
+.claude/
+
+# Systemdateien
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Screenshots vom Testen (nur lokal)
+screenshots/
+
+# Eigene Entwürfe (nicht veröffentlicht)
+bilder/

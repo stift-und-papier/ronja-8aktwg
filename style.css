@@ -1,0 +1,683 @@
+/* ============================================================
+   FARBEN – herbstlich (Terrakotta, Creme, Apricot, Senf, Schoko)
+   ============================================================ */
+:root {
+  --creme: #FFF7EC;
+  --creme-karte: rgba(255, 247, 236, 0.93);
+  --apricot: #F8CFA6;
+  --apricot-hell: #FCE5CF;
+  --terrakotta: #D9714E;
+  --terrakotta-dunkel: #A84A2A;   /* Text/Knöpfe, Kontrast mit Creme ca. 5:1 */
+  --senf: #E8B23A;
+  --senf-hell: #F9E7B5;
+  --schoko: #3B2418;               /* Haupttext, Kontrast mit Creme ca. 14:1 */
+  --schoko-weich: #6B4A38;
+  --nacht: #2B3566;
+  --nacht-hell: #E4E6F5;
+
+  --rund-gross: 32px;
+  --rund: 24px;
+  --schatten: 0 10px 30px rgba(59, 36, 24, 0.14);
+
+  --schrift: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --schrift-titel: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", "Varela Round", "Segoe UI", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--schrift);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--schoko);
+  background: var(--creme);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  line-height: 1.15;
+  margin: 0;
+}
+
+strong { font-weight: 800; }
+
+/* ============================================================
+   HINTERGRUND-LANDSCHAFTEN (sanfte Überblendung)
+   ============================================================ */
+.hintergrund {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #F8D6C4;
+}
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+body[data-zeit="morgen"] .bg-morgen,
+body[data-zeit="mittag"] .bg-mittag,
+body[data-zeit="abend"]  .bg-abend { opacity: 1; }
+
+/* ============================================================
+   SEITENAUFBAU
+   ============================================================ */
+.seite {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+.karte {
+  background: var(--creme-karte);
+  border-radius: var(--rund);
+  padding: 22px;
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Kopfbereich ---------- */
+.kopf {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-radius: var(--rund-gross);
+  padding: 16px 20px 28px;
+}
+.kopf-blob {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: min(380px, 82vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: var(--apricot);
+  border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%;
+  z-index: 0;
+}
+.kopf-blob::after {
+  content: "";
+  position: absolute;
+  right: -6%;
+  bottom: 8%;
+  width: 34%;
+  aspect-ratio: 1;
+  background: var(--senf-hell);
+  border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+}
+.ronja-buehne {
+  position: relative;
+  z-index: 1;
+  width: min(340px, 76vw);
+  margin: 0 auto;
+}
+.ronja {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.kopf h1 {
+  position: relative;
+  z-index: 1;
+  margin-top: 6px;
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--schoko);
+}
+.untertitel {
+  position: relative;
+  z-index: 1;
+  max-width: 36em;
+  margin: 10px auto 0;
+  color: var(--schoko-weich);
+  font-size: 1.1rem;
+}
+
+/* ---------- Toggle ---------- */
+.umschalter {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+  margin: 20px auto 22px;
+  max-width: 620px;
+}
+.umschalter [role="tablist"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 6px;
+  background: var(--creme-karte);
+  border-radius: 999px;
+  box-shadow: var(--schatten);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.umschalter [role="tab"] {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  min-height: 58px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--schoko);
+  font: 800 1.08rem/1 var(--schrift-titel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 8px;
+  transition: background-color .25s ease, color .25s ease, transform .15s ease;
+}
+.umschalter [role="tab"] svg { width: 26px; height: 26px; flex: none; }
+.umschalter [role="tab"]:hover { background: var(--apricot-hell); }
+.umschalter [role="tab"]:active { transform: scale(.97); }
+.umschalter [role="tab"][aria-selected="true"] {
+  background: var(--terrakotta-dunkel);
+  color: var(--creme);
+}
+:focus-visible {
+  outline: 4px solid var(--senf);
+  outline-offset: 3px;
+}
+
+/* ---------- Raster: Inhalt + "Wichtigste" ---------- */
+.raster {
+  display: grid;
+  gap: 22px;
+}
+@media (min-width: 900px) {
+  .raster {
+    grid-template-columns: 1fr 300px;
+    align-items: start;
+  }
+  .wichtig {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 96px;
+  }
+  .inhalt { grid-column: 1; grid-row: 1; }
+}
+
+/* ---------- Das Wichtigste ---------- */
+.wichtig {
+  border: 3px solid var(--terrakotta);
+  background: rgba(255, 247, 236, 0.96);
+}
+.wichtig h2 {
+  font-size: 1.3rem;
+  color: var(--terrakotta-dunkel);
+  margin-bottom: 12px;
+}
+.wichtig ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.wichtig li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.wichtig li svg {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  color: var(--terrakotta-dunkel);
+}
+
+/* ---------- Panels ---------- */
+.panel-titel {
+  display: inline-block;
+  font-size: clamp(1.9rem, 6vw, 2.8rem);
+  font-weight: 900;
+  background: var(--creme-karte);
+  padding: 8px 24px;
+  border-radius: 999px;
+  box-shadow: var(--schatten);
+}
+.panel-intro {
+  background: var(--creme-karte);
+  border-radius: var(--rund);
+  padding: 14px 20px;
+  margin: 14px 0 18px;
+  box-shadow: var(--schatten);
+}
+.panel { animation: einblenden .45s ease; }
+@keyframes einblenden {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.karten-raster {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 640px) {
+  .karten-raster { grid-template-columns: 1fr 1fr; }
+}
+.karten-raster .karte p { margin: 10px 0 0; }
+
+.karte-kopf {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.karte h3 {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+.badge {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 46% 54% 50% 50% / 55% 45% 55% 45%;
+  background: var(--creme);
+  color: var(--schoko);
+}
+.badge svg { width: 30px; height: 30px; }
+
+.menge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--schoko);
+  color: var(--creme);
+  font-size: .85rem;
+  vertical-align: middle;
+}
+
+.farbe-apricot { background: rgba(252, 229, 207, 0.95); }
+.farbe-apricot .badge { background: var(--apricot); }
+.farbe-senf { background: rgba(249, 231, 181, 0.95); }
+.farbe-senf .badge { background: var(--senf); }
+.farbe-creme .badge { background: var(--apricot-hell); }
+
+.warnung {
+  background: rgba(255, 247, 236, 0.96);
+  border: 3px solid var(--terrakotta);
+}
+.warnung .badge { background: var(--terrakotta-dunkel); color: var(--creme); }
+.warnung h3 { color: var(--terrakotta-dunkel); }
+
+.nacht {
+  background: rgba(228, 230, 245, 0.95);
+}
+.nacht .badge { background: var(--nacht); color: #FFF3C9; }
+
+.hinweis {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  border: 3px dashed var(--terrakotta);
+  background: rgba(255, 247, 236, 0.97);
+}
+.hinweis p { margin: 0; }
+.icon-gross {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  color: var(--terrakotta-dunkel);
+}
+
+.zutaten {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.zutaten li {
+  background: rgba(255, 247, 236, 0.8);
+  border-radius: 16px;
+  padding: 8px 12px 8px 36px;
+  position: relative;
+}
+.zutaten li::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 15px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--terrakotta);
+}
+.klein { font-size: .9em; color: var(--schoko-weich); }
+
+/* Platzhalter zum Nachtragen – fallen absichtlich auf */
+.todo {
+  display: inline-block;
+  margin: 16px 0 0;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: #FFF3A8;
+  border: 2px dashed var(--schoko-weich);
+  font-weight: 700;
+}
+
+.fuss {
+  margin-top: 30px;
+  text-align: center;
+}
+.fuss p {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--creme-karte);
+  box-shadow: var(--schatten);
+}
+
+/* ============================================================
+   DEKO-VORHANG
+   ============================================================ */
+.vorhang {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(59, 36, 24, 0.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: opacity .5s ease;
+}
+.vorhang[hidden] { display: none; }
+.vorhang.weg { opacity: 0; }
+.vorhang-karte {
+  width: min(420px, 100%);
+  background: var(--creme);
+  border-radius: var(--rund-gross);
+  padding: 28px 24px;
+  box-shadow: var(--schatten);
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+.vorhang-pfote { font-size: 2.6rem; margin: 0; }
+.vorhang-karte h2 { font-size: 1.6rem; font-weight: 900; }
+.vorhang-karte label { font-weight: 700; font-size: 1.15rem; }
+.vorhang-karte input {
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 3px solid var(--schoko-weich);
+  background: #fff;
+  color: var(--schoko);
+  text-align: center;
+}
+.vorhang-hinweis { min-height: 1.5em; margin: 0; color: var(--terrakotta-dunkel); font-weight: 700; }
+.vorhang-karte.wackeln { animation: wackeln .4s ease; }
+@keyframes wackeln {
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-4px); }
+}
+
+.knopf {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  min-height: 56px;
+  border-radius: 999px;
+  background: var(--terrakotta-dunkel);
+  color: var(--creme);
+  font: 900 1.2rem/1 var(--schrift-titel);
+}
+.knopf:hover { background: #8F3D20; }
+
+/* ---------- Absätze in Bausteinen aus inhalte.js ---------- */
+.panel-intro p, .hinweis p, .todo p, .notiz p { margin: 0; }
+.panel-intro p + p, .hinweis p + p, .todo p + p, .notiz p + p { margin-top: 8px; }
+.hinweis > div, .notiz > div { flex: 1; }
+.notiz { display: flex; gap: 16px; align-items: flex-start; margin-top: 18px; }
+.farbe-warnung {
+  background: rgba(255, 247, 236, 0.96);
+  border: 3px solid var(--terrakotta);
+}
+.farbe-warnung .badge { background: var(--terrakotta-dunkel); color: var(--creme); }
+.farbe-warnung h3 { color: var(--terrakotta-dunkel); }
+.farbe-creme { background: var(--creme-karte); }
+.farbe-nacht { background: rgba(228, 230, 245, 0.95); }
+.farbe-nacht .badge { background: var(--nacht); color: #FFF3C9; }
+
+/* ---------- Zeichnung in einer Karte (z. B. Fnöt) ---------- */
+.mit-bild { position: relative; }
+.karten-bild {
+  display: block;
+  width: min(190px, 64%);
+  height: auto;
+  margin: -4px auto 4px;
+  overflow: visible;
+}
+
+/* ---------- Zahnrad ---------- */
+.seite { position: relative; }
+.zahnrad {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--creme);
+  color: var(--schoko);
+  box-shadow: var(--schatten);
+  cursor: pointer;
+  transition: transform .3s ease;
+}
+.zahnrad svg { width: 28px; height: 28px; }
+.zahnrad:hover { transform: rotate(45deg); }
+@media (max-width: 480px) { .zahnrad { top: 20px; right: 20px; width: 46px; height: 46px; } }
+
+/* ---------- Bearbeiten-Dialog ---------- */
+.editor {
+  width: min(720px, 100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--rund-gross);
+  background: var(--creme);
+  color: var(--schoko);
+  box-shadow: 0 20px 60px rgba(59, 36, 24, .35);
+  font-family: var(--schrift);
+}
+.editor[open] { display: flex; flex-direction: column; }
+.editor::backdrop { background: rgba(59, 36, 24, .5); }
+.editor-kopf, .editor-fuss { padding: 16px 20px; background: var(--apricot-hell); }
+.editor-kopf { display: flex; justify-content: space-between; align-items: center; }
+.editor-kopf h2 { font-size: 1.4rem; font-weight: 900; }
+.editor-zu {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--creme); color: var(--schoko); font-size: 1.2rem; cursor: pointer;
+}
+.editor-inhalt { overflow-y: auto; padding: 16px 20px; flex: 1; }
+.editor-info { margin: 0 0 10px; font-size: .95rem; }
+.editor-knoepfe { display: flex; flex-wrap: wrap; gap: 10px; }
+.editor-knoepfe .knopf { flex: 1 1 140px; padding: 0 14px; min-height: 50px; font-size: 1.05rem; }
+.knopf-hell { background: var(--creme); color: var(--terrakotta-dunkel); border: 3px solid var(--terrakotta-dunkel); }
+.knopf-hell:hover { background: var(--apricot-hell); }
+
+.ed-tipp { margin: 0 0 14px; font-size: .95rem; color: var(--schoko-weich); }
+.ed-bereich {
+  border-radius: var(--rund);
+  background: #fff;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(59, 36, 24, .08);
+}
+.ed-bereich > summary {
+  cursor: pointer;
+  padding: 14px 18px;
+  font: 900 1.15rem/1.2 var(--schrift-titel);
+  list-style-position: inside;
+}
+.ed-bereich[open] > summary { border-bottom: 2px solid var(--apricot-hell); }
+.ed-bereich > :not(summary) { margin-left: 18px; margin-right: 18px; }
+.ed-bereich > :last-child { margin-bottom: 18px; }
+.ed-feld { display: grid; gap: 4px; margin-top: 12px; }
+.ed-feld label { font-weight: 700; font-size: .95rem; }
+.ed-feld small { color: var(--schoko-weich); margin-top: -4px; }
+.ed-feld input, .ed-feld textarea, .ed-feld select {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--schoko);
+  background: var(--creme);
+  border: 2px solid #CDB6A2;
+  border-radius: 12px;
+  padding: 10px 12px;
+  width: 100%;
+}
+.ed-feld textarea { resize: vertical; min-height: 4.5em; }
+.ed-reihe { display: grid; gap: 0 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.ed-eintrag {
+  border: 2px dashed #E2C9B2;
+  border-radius: 18px;
+  padding: 4px 14px 14px;
+  margin-top: 16px;
+}
+.ed-eintrag legend { font-weight: 900; padding: 0 6px; }
+.ed-eintrag-knoepfe { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+.ed-eintrag-knoepfe button, .ed-neu {
+  font: 700 .95rem/1 var(--schrift);
+  min-height: 40px;
+  min-width: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 2px solid var(--schoko-weich);
+  background: var(--creme);
+  color: var(--schoko);
+  cursor: pointer;
+}
+.ed-loeschen { border-color: var(--terrakotta-dunkel) !important; color: var(--terrakotta-dunkel) !important; }
+.ed-neu { margin-top: 14px; justify-self: start; }
+.ed-anleitung {
+  background: #E6F2D9;
+  border-radius: var(--rund);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+.ed-anleitung ol { margin: 8px 0 0; padding-left: 1.3em; }
+
+/* ---------- Entwurf-Hinweis ---------- */
+.entwurf-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100vw - 24px);
+  padding: 8px 8px 8px 18px;
+  border-radius: 999px;
+  background: var(--schoko);
+  color: var(--creme);
+  box-shadow: var(--schatten);
+  font-size: .95rem;
+}
+.entwurf-banner[hidden] { display: none; }
+.entwurf-banner button {
+  border: 0;
+  border-radius: 999px;
+  min-height: 40px;
+  padding: 0 16px;
+  background: var(--senf);
+  color: var(--schoko);
+  font: 800 .95rem/1 var(--schrift);
+  cursor: pointer;
+}
+
+/* ============================================================
+   HANDY-ANPASSUNGEN
+   ============================================================ */
+@media (max-width: 480px) {
+  .seite { padding: 12px 12px 32px; }
+  .karte { padding: 18px; }
+  .umschalter [role="tab"] { flex-direction: column; gap: 3px; font-size: .98rem; min-height: 64px; }
+  .umschalter [role="tab"] svg { width: 24px; height: 24px; }
+  .hinweis { flex-direction: column; gap: 8px; }
+}
+
+/* ============================================================
+   WENIGER BEWEGUNG, wenn im Gerät so eingestellt
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .bg { transition: opacity .3s linear !important; }
+}
+
+/* ============================================================
+   RONJA – Teile für Animationen
+   ============================================================ */
+#ronja .lid {
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: center top;
+}
+
+/* Drehpunkte der beweglichen Teile */
+#ronja #rute       { transform-box: fill-box; transform-origin: 100% 60%; }
+#ronja #ohr-links  { transform-box: fill-box; transform-origin: 80% 100%; }
+#ronja #ohr-rechts { transform-box: fill-box; transform-origin: 20% 100%; }
+#ronja #maul-offen { transform-box: fill-box; transform-origin: 50% 0%; }
+#ronja #zunge      { transform-box: fill-box; transform-origin: 50% 0%; }
+#ronja #koerper    { transform-box: fill-box; transform-origin: 50% 100%; }
+
+/* Blinzeln (kurz) */
+#ronja.blinzelt .lid { animation: blinzeln .2s ease-in-out; }
+@keyframes blinzeln {
+  0%, 100% { transform: scaleY(0); }
+  45%, 55% { transform: scaleY(1); }
+}
+
+/* Hecheln: Maul geht auf und zu, Zunge wackelt, Brust atmet */
+#ronja.hechelt #maul-offen { animation: maul .3s ease-in-out infinite alternate; }
+#ronja.hechelt #zunge      { animation: zunge .3s ease-in-out infinite alternate; }
+#ronja.hechelt #koerper    { animation: atmen .3s ease-in-out infinite alternate; }
+@keyframes maul  { from { transform: scaleY(1); } to { transform: scaleY(.62); } }
+@keyframes zunge { from { transform: translateY(0) rotate(-4deg); } to { transform: translateY(-5px) rotate(4deg); } }
+@keyframes atmen { from { transform: scaleY(1); } to { transform: scaleY(1.012); } }
+
+/* Schwanzwedeln in Schüben */
+#ronja.wedelt #rute { animation: wedeln .26s ease-in-out infinite alternate; }
+@keyframes wedeln { from { transform: rotate(-6deg); } to { transform: rotate(10deg); } }
+
+/* Ohrenzucken */
+#ronja.zuckt #ohr-links  { animation: zucken-links .55s ease-out; }
+#ronja.zuckt #ohr-rechts { animation: zucken-rechts .55s ease-out .06s; }
+@keyframes zucken-links  { 30% { transform: rotate(-10deg); } 60% { transform: rotate(4deg); } }
+@keyframes zucken-rechts { 30% { transform: rotate(10deg); }  60% { transform: rotate(-4deg); } }
+
+/* Weniger Bewegung gewünscht → Ronja bleibt ganz ruhig */
+@media (prefers-reduced-motion: reduce) {
+  #ronja *, #ronja .lid { animation: none !important; }
+}
