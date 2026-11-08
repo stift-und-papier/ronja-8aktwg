@@ -7,7 +7,7 @@
    ================================================================ */
 window.RONJA_INHALTE = {
   "seite": {
-    "titel": "Ronjas Futterplan",
+    "titel": "Ronjas Fütterungsplan",
     "untertitel": "Danke, dass du auf mich aufpasst! Hier steht alles, was du wissen musst, damit ich satt, gesund und glücklich bleibe.",
     "fuss": "Mit Liebe (und einer Portion KI) gemacht. 🐾 Danke fürs Aufpassen!"
   },
@@ -46,7 +46,7 @@ window.RONJA_INHALTE = {
       },
       {
         "icon": "napf",
-        "farbe": "senf",
+        "farbe": "apricot",
         "bild": "",
         "titel": "Portion 2",
         "menge": "ca. 200 g",
@@ -67,7 +67,7 @@ window.RONJA_INHALTE = {
     "karten": [
       {
         "icon": "keule",
-        "farbe": "apricot",
+        "farbe": "salbei",
         "bild": "keule",
         "titel": "Ich bin daheim - Gib mir ein Hühnerbein!",
         "menge": "",
@@ -76,7 +76,7 @@ window.RONJA_INHALTE = {
       },
       {
         "icon": "zucchini",
-        "farbe": "senf",
+        "farbe": "salbei",
         "bild": "kekse",
         "titel": "Snacks zwischendurch",
         "menge": "",
@@ -102,7 +102,7 @@ window.RONJA_INHALTE = {
     "karten": [
       {
         "icon": "napf",
-        "farbe": "apricot",
+        "farbe": "daemmer",
         "bild": "sack",
         "titel": "Abendessen",
         "menge": "ca. 150 g",
@@ -113,7 +113,7 @@ window.RONJA_INHALTE = {
       },
       {
         "icon": "spielzeug",
-        "farbe": "creme",
+        "farbe": "daemmer",
         "bild": "fnoet",
         "titel": "Spielzeit mit Fnöt",
         "menge": "",
@@ -122,7 +122,7 @@ window.RONJA_INHALTE = {
       },
       {
         "icon": "mond",
-        "farbe": "nacht",
+        "farbe": "senf",
         "bild": "korb",
         "titel": "Gute Nacht",
         "menge": "",

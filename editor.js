@@ -148,7 +148,7 @@
         neu("button", {
           type: "button", "class": "ed-neu", text: "+ Karte hinzufügen",
           onclick: function () {
-            karten.push({ icon: "pfoten", farbe: "creme", bild: "", titel: "Neue Karte", menge: "", text: "", liste: [] });
+            karten.push({ icon: "pfoten", farbe: "apricot", bild: "", titel: "Neue Karte", menge: "", text: "", liste: [] });
             R.speichereEntwurf(); zeichne();
           }
         }),

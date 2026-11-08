@@ -1,27 +1,77 @@
 /* ============================================================
-   FARBEN – herbstlich (Terrakotta, Creme, Apricot, Senf, Schoko)
+   SCHRIFT: Pixelify Sans (frei, Lizenz OFL – siehe fonts/OFL.txt)
+   ============================================================ */
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/pixelify-sans-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/pixelify-sans-latin-700-normal.woff2") format("woff2");
+}
+
+/* ============================================================
+   GRUNDWERTE
+   --px ist ein "Pixel" der Pixelgrafik. Rahmen, Abstände, Ecken,
+   Muster und Icon-Größen sind ganze Vielfache davon.
    ============================================================ */
 :root {
-  --creme: #FFF7EC;
-  --creme-karte: rgba(255, 247, 236, 0.93);
-  --apricot: #F8CFA6;
-  --apricot-hell: #FCE5CF;
-  --terrakotta: #D9714E;
-  --terrakotta-dunkel: #A84A2A;   /* Text/Knöpfe, Kontrast mit Creme ca. 5:1 */
-  --senf: #E8B23A;
-  --senf-hell: #F9E7B5;
-  --schoko: #3B2418;               /* Haupttext, Kontrast mit Creme ca. 14:1 */
-  --schoko-weich: #6B4A38;
-  --nacht: #2B3566;
-  --nacht-hell: #E4E6F5;
+  --px: 4px;
+  --linie: calc(var(--px) / 2);     /* dünne Außenlinie */
+  --rand: var(--px);                /* dicker Rahmen */
+  --stufe: var(--px);               /* eine Treppenstufe in den Ecken */
 
-  --rund-gross: 32px;
-  --rund: 24px;
+  /* Grundfarben (herbstlich) */
+  --creme: #FFF7EC;
+  --seite: #FFF4E4;
+  --punkt: #E9D3B8;
+  --schoko: #3B2418;               /* Haupttext, Kontrast mit Creme ca. 14:1 */
+  --schoko-weich: #5E4030;         /* Nebentext, Kontrast mit Creme ca. 9:1 */
+  --terrakotta: #D9714E;
+  --terrakotta-dunkel: #A84A2A;   /* Knöpfe, Kontrast mit Creme ca. 5:1 */
+  --senf: #E8B23A;
+  /* nur noch für den Bearbeiten-Dialog */
+  --apricot-hell: #FCE5CF;
+  --rund: 16px;
+  --rund-gross: 20px;
   --schatten: 0 10px 30px rgba(59, 36, 24, 0.14);
+  --schrift-titel: var(--schrift-pixel);
 
   --schrift: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-  --schrift-titel: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", "Varela Round", "Segoe UI", system-ui, sans-serif;
+  --schrift-pixel: "Pixelify Sans", var(--schrift);
+
+  /* Ecken mit zwei Treppenstufen (statt Rundungen) */
+  --treppe: polygon(
+    0 calc(2 * var(--stufe)), var(--stufe) calc(2 * var(--stufe)), var(--stufe) var(--stufe), calc(2 * var(--stufe)) var(--stufe), calc(2 * var(--stufe)) 0,
+    calc(100% - 2 * var(--stufe)) 0, calc(100% - 2 * var(--stufe)) var(--stufe), calc(100% - var(--stufe)) var(--stufe), calc(100% - var(--stufe)) calc(2 * var(--stufe)), 100% calc(2 * var(--stufe)),
+    100% calc(100% - 2 * var(--stufe)), calc(100% - var(--stufe)) calc(100% - 2 * var(--stufe)), calc(100% - var(--stufe)) calc(100% - var(--stufe)), calc(100% - 2 * var(--stufe)) calc(100% - var(--stufe)), calc(100% - 2 * var(--stufe)) 100%,
+    calc(2 * var(--stufe)) 100%, calc(2 * var(--stufe)) calc(100% - var(--stufe)), var(--stufe) calc(100% - var(--stufe)), var(--stufe) calc(100% - 2 * var(--stufe)), 0 calc(100% - 2 * var(--stufe)));
+  /* nur oben Treppen (für Reiter) */
+  --treppe-oben: polygon(
+    0 calc(2 * var(--stufe)), var(--stufe) calc(2 * var(--stufe)), var(--stufe) var(--stufe), calc(2 * var(--stufe)) var(--stufe), calc(2 * var(--stufe)) 0,
+    calc(100% - 2 * var(--stufe)) 0, calc(100% - 2 * var(--stufe)) var(--stufe), calc(100% - var(--stufe)) var(--stufe), calc(100% - var(--stufe)) calc(2 * var(--stufe)), 100% calc(2 * var(--stufe)),
+    100% 100%, 0 100%);
+
+  /* Standard-Kartenfarben (Apricot) */
+  --aussen: #8A4B2E;
+  --rahmen: #E9A06E;
+  --fuell: #FDEBD8;
 }
+
+/* ---------- Kartenfarben: Außenlinie, Rahmen (auch Reiter), Füllung ---------- */
+.farbe-apricot { --aussen: #8A4B2E; --rahmen: #E9A06E; --fuell: #FDEBD8; }
+.farbe-salbei  { --aussen: #4A6644; --rahmen: #9DBB8E; --fuell: #EEF4E6; }
+.farbe-daemmer { --aussen: #4B4C7E; --rahmen: #A9ACDA; --fuell: #EFEFFA; }
+.farbe-senf    { --aussen: #7E5C14; --rahmen: #E3BC55; --fuell: #FDF4D9; }
+.farbe-rose    { --aussen: #8E4456; --rahmen: #E7A3B2; --fuell: #FDEFF2; }
+.farbe-warnung { --aussen: #7E2A1C; --rahmen: #E0805E; --fuell: #FFF0E8; }
+.kopf, .fuss, .vorhang-karte, .zahnrad { --aussen: #8A4B2E; --rahmen: #EE9B5E; --fuell: #FFF3E5; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -34,12 +84,16 @@ body {
   font-size: 1.0625rem;
   line-height: 1.55;
   color: var(--schoko);
-  background: var(--creme);
   overflow-x: hidden;
+  /* Creme mit feinem Punktraster (ein Punkt pro 4×4 Pixel-Kästchen) */
+  background-color: var(--seite);
+  background-image: conic-gradient(from 270deg at var(--linie) var(--linie), var(--punkt) 0 90deg, transparent 90deg);
+  background-size: calc(4 * var(--px)) calc(4 * var(--px));
 }
 
 h1, h2, h3 {
-  font-family: var(--schrift-titel);
+  font-family: var(--schrift-pixel);
+  font-weight: 700;
   line-height: 1.15;
   margin: 0;
 }
@@ -47,331 +101,411 @@ h1, h2, h3 {
 strong { font-weight: 800; }
 
 /* ============================================================
-   HINTERGRUND-LANDSCHAFTEN (sanfte Überblendung)
+   PIXEL-HIMMEL hinter dem Kopfbereich
+   6 klar abgesetzte Farbbänder (oben --h1 … unten --h6). An jedem
+   Übergang liegt ein Schachbrett-Streifen aus beiden Farben, unten
+   läuft der Himmel in immer weniger Punkten ins Creme aus.
+   Alles aus CSS, Musterzellen = 1 Pixel (--px).
    ============================================================ */
-.hintergrund {
-  position: fixed;
-  inset: 0;
+.himmel {
+  --u: var(--px);
+  --b: calc(16 * var(--px));                 /* Höhe eines Farbbands */
+  --schach: calc(2 * var(--u)) calc(2 * var(--u));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(6 * var(--b) + 8 * var(--u));
   z-index: -1;
-  background: #F8D6C4;
+  overflow: hidden;
 }
-.bg {
+.himmel-ebene {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
   transition: opacity 1.2s ease;
+  background:
+    /* Schachbrett an den Bandgrenzen */
+    repeating-conic-gradient(var(--h2) 0 25%, var(--h1) 0 50%) 0 calc(1 * var(--b) - var(--u)) / var(--schach) repeat-x,
+    repeating-conic-gradient(var(--h3) 0 25%, var(--h2) 0 50%) 0 calc(2 * var(--b) - var(--u)) / var(--schach) repeat-x,
+    repeating-conic-gradient(var(--h4) 0 25%, var(--h3) 0 50%) 0 calc(3 * var(--b) - var(--u)) / var(--schach) repeat-x,
+    repeating-conic-gradient(var(--h5) 0 25%, var(--h4) 0 50%) 0 calc(4 * var(--b) - var(--u)) / var(--schach) repeat-x,
+    repeating-conic-gradient(var(--h6) 0 25%, var(--h5) 0 50%) 0 calc(5 * var(--b) - var(--u)) / var(--schach) repeat-x,
+    /* Auslaufen ins Creme: halb, ein Viertel, ein Achtel der Punkte */
+    repeating-conic-gradient(transparent 0 25%, var(--h6) 0 50%) 0 calc(6 * var(--b)) / var(--schach) repeat-x,
+    conic-gradient(from 270deg at var(--u) var(--u), var(--h6) 0 90deg, transparent 0) 0 calc(6 * var(--b) + 2 * var(--u)) / var(--schach) repeat-x,
+    conic-gradient(from 270deg at var(--u) var(--u), var(--h6) 0 90deg, transparent 0) 0 calc(6 * var(--b) + 4 * var(--u)) / calc(4 * var(--u)) calc(2 * var(--u)) repeat-x,
+    conic-gradient(from 270deg at var(--u) var(--u), var(--h6) 0 90deg, transparent 0) calc(2 * var(--u)) calc(6 * var(--b) + 6 * var(--u)) / calc(4 * var(--u)) calc(2 * var(--u)) repeat-x,
+    /* die Bänder selbst: harte Farbstufen, kein weicher Verlauf */
+    linear-gradient(to bottom,
+      var(--h1) 0 var(--b),
+      var(--h2) 0 calc(2 * var(--b)),
+      var(--h3) 0 calc(3 * var(--b)),
+      var(--h4) 0 calc(4 * var(--b)),
+      var(--h5) 0 calc(5 * var(--b)),
+      var(--h6) 0 calc(6 * var(--b)),
+      transparent 0);
 }
-body[data-zeit="morgen"] .bg-morgen,
-body[data-zeit="mittag"] .bg-mittag,
-body[data-zeit="abend"]  .bg-abend { opacity: 1; }
+/* Pixel-Motive im Himmel: 1 Motiv-Pixel = 1 --px, alles im oberen Streifen */
+.himmel .ding { position: absolute; }
+.himmel-morgen .sonne-halb { right: calc(-12 * var(--px)); top: calc(-4 * var(--px)); }   /* 8-fach, halb hinter dem Rand */
+.himmel-morgen .w1 { left: 6%; top: calc(3 * var(--px)); }
+.himmel-morgen .w2 { left: 58%; top: var(--px); }
+.himmel-mittag .sonne-hoch { right: 9%; top: var(--px); }
+.himmel-mittag .w1 { left: 4%; top: calc(4 * var(--px)); }
+.himmel-mittag .w3 { left: 38%; top: var(--px); }
+.himmel-mittag .w4 { right: 26%; top: calc(5 * var(--px)); }
+.himmel-abend .mond { right: 8%; top: var(--px); }
+.himmel-abend .s1 { left: 7%; top: calc(3 * var(--px)); }
+.himmel-abend .f1 { left: 24%; top: calc(8 * var(--px)); }
+.himmel-abend .f2 { left: 46%; top: calc(2 * var(--px)); }
+.himmel-abend .s2 { left: 64%; top: calc(4 * var(--px)); }
+.himmel-abend .f3 { right: 3%; top: calc(9 * var(--px)); }
+
+/* Morgen: Sonnenaufgang – zartes Blau und Flieder oben, Rosé, Pfirsich unten */
+.himmel-morgen { --h1: #C6D4EE; --h2: #D6CCEA; --h3: #E6C9E0; --h4: #F3C8CF; --h5: #F8D0B6; --h6: #FBDDBD; }
+/* Mittag: helles Himmelblau, Creme, Gelb */
+.himmel-mittag { --h1: #94CAE8; --h2: #ADD8EE; --h3: #C6E4EF; --h4: #DDEEE8; --h5: #F3EFD0; --h6: #FAE7A6; }
+/* Abend: Nachtblau oben, Violett, Rosa, Orange unten */
+.himmel-abend  { --h1: #232C5A; --h2: #363C77; --h3: #574A8A; --h4: #855A94; --h5: #C77592; --h6: #EE9F7A; }
+
+body[data-zeit="morgen"] .himmel-morgen,
+body[data-zeit="mittag"] .himmel-mittag,
+body[data-zeit="abend"]  .himmel-abend { opacity: 1; }
+
+/* Seitenton und Punktraster verschieben sich minimal mit der Tageszeit */
+@property --seite { syntax: "<color>"; inherits: true; initial-value: #FFF4E4; }
+@property --punkt { syntax: "<color>"; inherits: true; initial-value: #E9D3B8; }
+body { transition: --seite 1.2s ease, --punkt 1.2s ease; }
+body[data-zeit="morgen"] { --seite: #FFF3E6; --punkt: #EBD0C0; }
+body[data-zeit="mittag"] { --seite: #FFF6E2; --punkt: #E5D5AC; }
+body[data-zeit="abend"]  { --seite: #FBF1E8; --punkt: #DACBD3; }
+
+/* ============================================================
+   PIXEL-KASTEN: Außenlinie + dicker Rahmen + helle Füllung,
+   Ecken treppenförmig. Drei Ebenen: Kasten selbst, ::before, ::after.
+   ============================================================ */
+.px-box,
+.umschalter [role="tab"],
+.zahnrad,
+.knopf,
+.vorhang-karte {
+  position: relative;
+  isolation: isolate;
+  background: var(--aussen);
+  clip-path: var(--treppe);
+}
+.px-box::before, .px-box::after,
+.umschalter [role="tab"]::before, .umschalter [role="tab"]::after,
+.zahnrad::before, .zahnrad::after,
+.knopf::before, .knopf::after,
+.vorhang-karte::before, .vorhang-karte::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  clip-path: var(--treppe);
+}
+.px-box::before, .umschalter [role="tab"]::before, .zahnrad::before, .knopf::before, .vorhang-karte::before {
+  inset: var(--linie);
+  background: var(--rahmen);
+}
+.px-box::after, .umschalter [role="tab"]::after, .zahnrad::after, .knopf::after, .vorhang-karte::after {
+  inset: calc(var(--linie) + var(--rand));
+  background: var(--fuell);
+}
+.px-box { padding: calc(var(--linie) + var(--rand) + 4 * var(--px)); }
+
+/* Kleine Eck-Markierungen innen (wie Fotoecken) */
+.mit-marken::after, .wichtig .karte-koerper::after, .kopf.px-box::after {
+  --a: calc(2 * var(--px));
+  --l: calc(3 * var(--px));
+  background:
+    linear-gradient(var(--rahmen) 0 0) left var(--a) top var(--a) / var(--l) var(--px),
+    linear-gradient(var(--rahmen) 0 0) left var(--a) top var(--a) / var(--px) var(--l),
+    linear-gradient(var(--rahmen) 0 0) right var(--a) top var(--a) / var(--l) var(--px),
+    linear-gradient(var(--rahmen) 0 0) right var(--a) top var(--a) / var(--px) var(--l),
+    linear-gradient(var(--rahmen) 0 0) left var(--a) bottom var(--a) / var(--l) var(--px),
+    linear-gradient(var(--rahmen) 0 0) left var(--a) bottom var(--a) / var(--px) var(--l),
+    linear-gradient(var(--rahmen) 0 0) right var(--a) bottom var(--a) / var(--l) var(--px),
+    linear-gradient(var(--rahmen) 0 0) right var(--a) bottom var(--a) / var(--px) var(--l),
+    var(--fuell);
+  background-repeat: no-repeat;
+}
+
+/* Fokus: Umrisse würden von den Treppen-Ecken abgeschnitten, darum ein Ring innen */
+:focus-visible { outline: var(--px) solid var(--schoko); outline-offset: var(--px); }
+:is(.umschalter [role="tab"], .zahnrad, .knopf):focus-visible { outline: none; }
+:is(.umschalter [role="tab"], .zahnrad, .knopf):focus-visible::after {
+  box-shadow: inset 0 0 0 var(--px) var(--schoko), inset 0 0 0 calc(2 * var(--px)) var(--creme);
+}
 
 /* ============================================================
    SEITENAUFBAU
    ============================================================ */
 .seite {
+  position: relative;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 20px 16px 40px;
+  --oben: calc(14 * var(--px));   /* oben ein Stück Himmel mit Sonne/Mond sichtbar */
+  padding: var(--oben) calc(4 * var(--px)) 0;
 }
 
-.karte {
-  background: var(--creme-karte);
-  border-radius: var(--rund);
-  padding: 22px;
-  box-shadow: var(--schatten);
-}
-
-/* ---------- Kopfbereich ---------- */
+/* ---------- Kopfkarte ---------- */
 .kopf {
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  gap: calc(2 * var(--px));
   text-align: center;
-  border-radius: var(--rund-gross);
-  padding: 16px 20px 28px;
 }
-.kopf-blob {
-  position: absolute;
-  left: 50%;
-  top: 14px;
-  width: min(380px, 82vw);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  background: var(--apricot);
-  border-radius: 58% 42% 55% 45% / 48% 55% 45% 52%;
-  z-index: 0;
-}
-.kopf-blob::after {
-  content: "";
-  position: absolute;
-  right: -6%;
-  bottom: 8%;
-  width: 34%;
-  aspect-ratio: 1;
-  background: var(--senf-hell);
-  border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
-}
-.ronja-buehne {
-  position: relative;
-  z-index: 1;
-  width: fit-content;
-  margin: 0 auto;
-}
-/* Pixelbild 76×85: nur ganzzahlig vergrößern (4-fach, auf Handys 3-fach) */
+.kopf.px-box { padding-top: calc(var(--linie) + var(--rand) + 3 * var(--px)); }
+.ronja-buehne { width: fit-content; }
+/* Pixelbild 76×85: nur ganzzahlig vergrößern (3-fach) */
 .ronja {
   display: block;
-  width: 304px;
-  height: 340px;
-}
-@media (max-width: 419px) {
-  .ronja { width: 228px; height: 255px; }
+  width: 228px;
+  height: 255px;
 }
 .kopf h1 {
-  position: relative;
-  z-index: 1;
-  margin-top: 6px;
-  font-size: clamp(2.2rem, 8vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 7.5vw, 3.5rem);
   color: var(--schoko);
+  letter-spacing: .01em;
 }
 .untertitel {
-  position: relative;
-  z-index: 1;
-  max-width: 36em;
-  margin: 10px auto 0;
+  max-width: 34em;
+  margin: calc(2 * var(--px)) 0 0;
   color: var(--schoko-weich);
   font-size: 1.1rem;
 }
+@media (min-width: 760px) {
+  .kopf {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-items: start;
+    gap: calc(8 * var(--px));
+    text-align: left;
+    padding-right: calc(18 * var(--px));
+  }
+}
 
-/* ---------- Toggle ---------- */
+/* ---------- Toggle: drei Pixel-Knöpfe ---------- */
 .umschalter {
   position: sticky;
-  top: 10px;
+  top: calc(2 * var(--px));
   z-index: 10;
-  margin: 20px auto 22px;
-  max-width: 620px;
+  margin: calc(6 * var(--px)) auto;
+  max-width: 640px;
 }
 .umschalter [role="tablist"] {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  padding: 6px;
-  background: var(--creme-karte);
-  border-radius: 999px;
-  box-shadow: var(--schatten);
+  gap: calc(3 * var(--px));
 }
 .umschalter [role="tab"] {
   appearance: none;
   border: 0;
   cursor: pointer;
-  min-height: 58px;
-  border-radius: 999px;
-  background: transparent;
+  min-height: calc(16 * var(--px));
   color: var(--schoko);
-  font: 800 1.08rem/1 var(--schrift-titel);
+  font: 700 1.25rem/1 var(--schrift-pixel);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0 8px;
-  transition: background-color .25s ease, color .25s ease, transform .15s ease;
+  gap: calc(2 * var(--px));
+  padding: 0 calc(3 * var(--px)) var(--px);
 }
-.umschalter [role="tab"] svg { width: 26px; height: 26px; flex: none; }
-.umschalter [role="tab"]:hover { background: var(--apricot-hell); }
-.umschalter [role="tab"]:active { transform: scale(.97); }
+#tab-morgen { --aussen: #8A4B2E; --rahmen: #E9A06E; --fuell: #FDEBD8; --gedrueckt: #F6C49A; }
+#tab-mittag { --aussen: #4A6644; --rahmen: #9DBB8E; --fuell: #EEF4E6; --gedrueckt: #C8DCB9; }
+#tab-abend  { --aussen: #4B4C7E; --rahmen: #A9ACDA; --fuell: #EFEFFA; --gedrueckt: #CDCFEE; }
+/* nicht gedrückt: unten eine dunklere Kante (Knopf steht hoch) */
+.umschalter [role="tab"]::after { bottom: calc(var(--linie) + 2 * var(--rand)); }
+.umschalter [role="tab"] svg { width: calc(7 * var(--px)); height: calc(7 * var(--px)); flex: none; }
+.umschalter [role="tab"]:hover::after { background: var(--gedrueckt); }
+/* gedrückt: Knopf sitzt eine Pixelreihe tiefer, Kante weg, Füllung kräftiger */
 .umschalter [role="tab"][aria-selected="true"] {
-  background: var(--terrakotta-dunkel);
-  color: var(--creme);
+  transform: translateY(var(--px));
+  padding-bottom: 0;
 }
-:focus-visible {
-  outline: 4px solid var(--senf);
-  outline-offset: 3px;
+.umschalter [role="tab"][aria-selected="true"]::after {
+  bottom: calc(var(--linie) + var(--rand));
+  background: var(--gedrueckt);
+}
+.umschalter [role="tab"][aria-selected="true"] span {
+  text-decoration: underline;
+  text-decoration-thickness: var(--linie);
+  text-underline-offset: var(--px);
 }
 
-/* ---------- Raster: Inhalt + "Wichtigste" ---------- */
-.raster {
+/* ---------- Karten im Raster ---------- */
+.panel {
   display: grid;
-  gap: 22px;
+  gap: calc(6 * var(--px));
+  animation: einblenden .45s ease;
 }
-@media (min-width: 900px) {
-  .raster {
-    grid-template-columns: 1fr 300px;
-    align-items: start;
-  }
-  .wichtig {
-    grid-column: 2;
-    grid-row: 1;
-    position: sticky;
-    top: 96px;
-  }
-  .inhalt { grid-column: 1; grid-row: 1; }
+@media (min-width: 760px) {
+  .panel { grid-template-columns: 1fr 1fr; }
+  /* bleibt am Ende eine Karte allein übrig, wird sie breit */
+  .panel > .karte:last-child:nth-child(odd), .breit { grid-column: 1 / -1; }
 }
+.panel[hidden] { display: none; }
+@keyframes einblenden {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.karte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.karte-koerper { flex: 1; }
+.karte-koerper > :first-child { margin-top: 0; }
+.karte-koerper p { margin: calc(3 * var(--px)) 0 0; }
+
+/* ---------- Deko-Pixel neben den Reitern (sparsam) ---------- */
+.deko-pixel.rechts, .deko-pixel.rechts-2 { position: absolute; z-index: 2; pointer-events: none; }
+.deko-pixel.rechts   { top: calc(2 * var(--px)); right: calc(4 * var(--px)); }
+.deko-pixel.rechts-2 { top: calc(5 * var(--px)); right: calc(15 * var(--px)); }
+.karte:has(> .deko-pixel) > .reiter { max-width: calc(100% - 22 * var(--px)); }
+
+/* ---------- Reiter: wächst oben links aus dem Kartenrahmen ---------- */
+.reiter {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  align-self: flex-start;
+  max-width: calc(100% - 6 * var(--px));
+  margin: 0 0 calc(-1 * (var(--linie) + var(--rand))) calc(3 * var(--px));
+  padding: calc(var(--linie) + var(--rand) + 2 * var(--px)) calc(var(--linie) + 4 * var(--px)) calc(3 * var(--px));
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--px));
+  font-size: 1.3rem;
+  line-height: 1.2;
+  /* Außenlinie nur oben und an den Seiten; unten geht der Reiter in den Rahmen über */
+  background: linear-gradient(var(--aussen) 0 0) top / 100% calc(100% - var(--linie) - var(--rand)) no-repeat;
+  clip-path: var(--treppe-oben);
+}
+.reiter::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: var(--linie) var(--linie) 0;
+  background: var(--rahmen);
+  clip-path: var(--treppe-oben);
+}
+.reiter-icon { width: calc(7 * var(--px)); height: calc(7 * var(--px)); flex: none; }
+
+.menge {
+  display: inline-block;
+  flex: none;
+  white-space: nowrap;
+  padding: var(--px) calc(2 * var(--px));
+  background: var(--schoko);
+  color: var(--creme);
+  font: 700 .9rem/1 var(--schrift-pixel);
+  clip-path: polygon(var(--linie) 0, calc(100% - var(--linie)) 0, calc(100% - var(--linie)) var(--linie), 100% var(--linie), 100% calc(100% - var(--linie)), calc(100% - var(--linie)) calc(100% - var(--linie)), calc(100% - var(--linie)) 100%, var(--linie) 100%, var(--linie) calc(100% - var(--linie)), 0 calc(100% - var(--linie)), 0 var(--linie), var(--linie) var(--linie));
+}
+
+/* Pixelbilder in Karten: nie krumm skalieren */
+.karten-bild {
+  display: block;
+  max-width: none;
+  margin: 0 auto calc(2 * var(--px));
+  image-rendering: pixelated;
+}
+
+/* Gestrichelte Trennlinie (Pixel-Striche) */
+.zutaten li + li,
+.wichtig li + li {
+  background: linear-gradient(90deg, var(--rahmen) 50%, transparent 0) top left / calc(2 * var(--px)) var(--linie) repeat-x;
+}
+
+/* ---------- Aufzählungen ---------- */
+.zutaten {
+  margin: calc(3 * var(--px)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.zutaten li {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(2 * var(--px));
+  padding: calc(2 * var(--px)) 0;
+}
+/* Aufzählungszeichen: Pixel-Pfote bzw. -Tropfen, in einer festen Spalte */
+.zutaten .punkt { flex: none; margin: calc(var(--px) / 2) 0 0; }
+.zutaten li > span { flex: 1; }
+.zutaten svg[width="16"] { margin-inline: calc(3 * var(--px)) var(--linie); }
 
 /* ---------- Das Wichtigste ---------- */
-.wichtig {
-  border: 3px solid var(--terrakotta);
-  background: rgba(255, 247, 236, 0.96);
-}
-.wichtig h2 {
-  font-size: 1.3rem;
-  color: var(--terrakotta-dunkel);
-  margin-bottom: 12px;
-}
+.wichtig .reiter { font-size: 1.4rem; }
 .wichtig ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 12px;
 }
 .wichtig li {
   display: flex;
-  gap: 12px;
+  gap: calc(3 * var(--px));
   align-items: flex-start;
+  padding: calc(3 * var(--px)) 0;
 }
+.wichtig li:first-child { padding-top: 0; }
+.wichtig li:last-child { padding-bottom: 0; }
 .wichtig li svg {
   flex: none;
-  width: 30px;
-  height: 30px;
-  color: var(--terrakotta-dunkel);
+  width: calc(7 * var(--px));
+  height: calc(7 * var(--px));
 }
 
-/* ---------- Panels ---------- */
-.panel-titel {
-  display: inline-block;
-  font-size: clamp(1.9rem, 6vw, 2.8rem);
-  font-weight: 900;
-  background: var(--creme-karte);
-  padding: 8px 24px;
-  border-radius: 999px;
-  box-shadow: var(--schatten);
-}
-.panel-intro {
-  background: var(--creme-karte);
-  border-radius: var(--rund);
-  padding: 14px 20px;
-  margin: 14px 0 18px;
-  box-shadow: var(--schatten);
-}
-.panel { animation: einblenden .45s ease; }
-@keyframes einblenden {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.karten-raster {
-  display: grid;
-  gap: 18px;
-}
-@media (min-width: 640px) {
-  .karten-raster { grid-template-columns: 1fr 1fr; }
-}
-.karten-raster .karte p { margin: 10px 0 0; }
-
-.karte-kopf {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.karte h3 {
-  font-size: 1.3rem;
-  font-weight: 900;
-}
-.badge {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 46% 54% 50% 50% / 55% 45% 55% 45%;
-  background: var(--creme);
-  color: var(--schoko);
-}
-.badge svg { width: 30px; height: 30px; }
-
-.menge {
-  display: inline-block;
-  margin-left: 4px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: var(--schoko);
-  color: var(--creme);
-  font-size: .85rem;
-  vertical-align: middle;
-}
-
-.farbe-apricot { background: rgba(252, 229, 207, 0.95); }
-.farbe-apricot .badge { background: var(--apricot); }
-.farbe-senf { background: rgba(249, 231, 181, 0.95); }
-.farbe-senf .badge { background: var(--senf); }
-.farbe-creme .badge { background: var(--apricot-hell); }
-
-.hinweis {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 18px;
-  border: 3px dashed var(--terrakotta);
-  background: rgba(255, 247, 236, 0.97);
-}
-.hinweis p { margin: 0; }
-.icon-gross {
-  flex: none;
-  width: 44px;
-  height: 44px;
-  color: var(--terrakotta-dunkel);
-}
-
-.zutaten {
-  margin: 10px 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 8px;
-}
-.zutaten li {
-  background: rgba(255, 247, 236, 0.8);
-  border-radius: 16px;
-  padding: 8px 12px 8px 36px;
-  position: relative;
-}
-.zutaten li::before {
-  content: "";
-  position: absolute;
-  left: 13px;
-  top: 15px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--terrakotta);
-}
-.klein { font-size: .9em; color: var(--schoko-weich); }
+/* ---------- Hinweis / Notiz (falls in inhalte.js gefüllt) ---------- */
+.hinweis, .notiz { display: flex; gap: calc(4 * var(--px)); align-items: flex-start; }
+.hinweis > div, .notiz > div { flex: 1; }
+.hinweis p, .notiz p, .todo p, .intro p { margin: 0; }
+.hinweis p + p, .notiz p + p, .todo p + p, .intro p + p { margin-top: calc(2 * var(--px)); }
+.icon-gross { flex: none; width: calc(14 * var(--px)); height: calc(14 * var(--px)); }
 
 /* Platzhalter zum Nachtragen – fallen absichtlich auf */
 .todo {
-  display: inline-block;
-  margin: 16px 0 0;
-  padding: 6px 14px;
-  border-radius: 12px;
+  padding: calc(2 * var(--px)) calc(4 * var(--px));
   background: #FFF3A8;
-  border: 2px dashed var(--schoko-weich);
+  border: var(--linie) dashed var(--schoko-weich);
   font-weight: 700;
 }
 
+/* ---------- Fußleiste über die ganze Breite ---------- */
 .fuss {
-  margin-top: 30px;
+  margin: calc(10 * var(--px)) calc(50% - 50vw) 0;
+  padding: calc(var(--linie) + var(--rand) + 3 * var(--px)) calc(4 * var(--px)) calc(3 * var(--px));
   text-align: center;
+  background:
+    linear-gradient(var(--aussen) 0 0) top / 100% var(--linie) no-repeat,
+    linear-gradient(var(--rahmen) 0 0) 0 var(--linie) / 100% var(--rand) no-repeat,
+    var(--fuell);
 }
 .fuss p {
-  display: inline-block;
   margin: 0;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: var(--creme-karte);
-  box-shadow: var(--schatten);
+  font: 400 1.05rem/1.4 var(--schrift-pixel);
 }
+
+/* ---------- Zahnrad ---------- */
+.zahnrad {
+  position: absolute;
+  top: calc(var(--oben) + var(--linie) + var(--rand) + 2 * var(--px));
+  right: calc(4 * var(--px) + var(--linie) + var(--rand) + 2 * var(--px));
+  z-index: 5;
+  width: calc(12 * var(--px));
+  height: calc(12 * var(--px));
+  border: 0;
+  display: grid;
+  place-items: center;
+  color: var(--schoko);
+  cursor: pointer;
+}
+.zahnrad svg { width: calc(7 * var(--px)); height: calc(7 * var(--px)); }
+.vorhang-pfote { display: block; justify-self: center; }
+.zahnrad:hover::after { background: #FAD9BC; }
 
 /* ============================================================
    DEKO-VORHANG
@@ -392,93 +526,44 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
 .vorhang.weg { opacity: 0; }
 .vorhang-karte {
   width: min(420px, 100%);
-  background: var(--creme);
-  border-radius: var(--rund-gross);
-  padding: 28px 24px;
-  box-shadow: var(--schatten);
+  padding: calc(var(--linie) + var(--rand) + 6 * var(--px)) calc(var(--linie) + var(--rand) + 5 * var(--px));
   text-align: center;
   display: grid;
-  gap: 12px;
+  gap: calc(3 * var(--px));
 }
-.vorhang-pfote { font-size: 2.6rem; margin: 0; }
-.vorhang-karte h2 { font-size: 1.6rem; font-weight: 900; }
+.vorhang-karte h2 { font-size: 1.6rem; }
 .vorhang-karte label { font-weight: 700; font-size: 1.15rem; }
 .vorhang-karte input {
   font: inherit;
   font-size: 1.2rem;
-  padding: 14px 16px;
-  border-radius: 16px;
-  border: 3px solid var(--schoko-weich);
+  padding: calc(3 * var(--px)) calc(4 * var(--px));
+  border: var(--px) solid var(--aussen);
+  border-radius: 0;
   background: #fff;
   color: var(--schoko);
   text-align: center;
 }
 .vorhang-hinweis { min-height: 1.5em; margin: 0; color: var(--terrakotta-dunkel); font-weight: 700; }
-.vorhang-karte.wackeln { animation: wackeln .4s ease; }
+.vorhang-karte.wackeln { animation: wackeln .4s steps(1); }
 @keyframes wackeln {
-  25% { transform: translateX(-8px); }
-  50% { transform: translateX(8px); }
-  75% { transform: translateX(-4px); }
+  25% { transform: translateX(calc(-2 * var(--px))); }
+  50% { transform: translateX(calc(2 * var(--px))); }
+  75% { transform: translateX(calc(-1 * var(--px))); }
 }
 
 .knopf {
+  --aussen: #5E2512; --rahmen: #A84A2A; --fuell: #A84A2A;
   appearance: none;
   border: 0;
   cursor: pointer;
-  min-height: 56px;
-  border-radius: 999px;
-  background: var(--terrakotta-dunkel);
+  min-height: calc(14 * var(--px));
+  padding: 0 calc(5 * var(--px));
   color: var(--creme);
-  font: 900 1.2rem/1 var(--schrift-titel);
+  font: 700 1.2rem/1 var(--schrift-pixel);
 }
-.knopf:hover { background: #8F3D20; }
-
-/* ---------- Absätze in Bausteinen aus inhalte.js ---------- */
-.panel-intro p, .hinweis p, .todo p, .notiz p { margin: 0; }
-.panel-intro p + p, .hinweis p + p, .todo p + p, .notiz p + p { margin-top: 8px; }
-.hinweis > div, .notiz > div { flex: 1; }
-.notiz { display: flex; gap: 16px; align-items: flex-start; margin-top: 18px; }
-.farbe-warnung {
-  background: rgba(255, 247, 236, 0.96);
-  border: 3px solid var(--terrakotta);
-}
-.farbe-warnung .badge { background: var(--terrakotta-dunkel); color: var(--creme); }
-.farbe-warnung h3 { color: var(--terrakotta-dunkel); }
-.farbe-creme { background: var(--creme-karte); }
-.farbe-nacht { background: rgba(228, 230, 245, 0.95); }
-.farbe-nacht .badge { background: var(--nacht); color: #FFF3C9; }
-
-/* ---------- Zeichnung in einer Karte (z. B. Fnöt) ---------- */
-.mit-bild { position: relative; }
-.karten-bild {
-  display: block;
-  max-width: none;          /* nie krumm verkleinern, sonst werden die Pixel unscharf */
-  margin: 0 auto 8px;
-  image-rendering: pixelated;
-}
-
-/* ---------- Zahnrad ---------- */
-.seite { position: relative; }
-.zahnrad {
-  position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 5;
-  width: 52px;
-  height: 52px;
-  border: 0;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--creme);
-  color: var(--schoko);
-  box-shadow: var(--schatten);
-  cursor: pointer;
-  transition: transform .3s ease;
-}
-.zahnrad svg { width: 28px; height: 28px; }
-.zahnrad:hover { transform: rotate(45deg); }
-@media (max-width: 480px) { .zahnrad { top: 20px; right: 20px; width: 46px; height: 46px; } }
+.knopf:hover::after { background: #8F3D20; }
+.knopf-hell { --rahmen: #A84A2A; --fuell: var(--creme); color: var(--terrakotta-dunkel); }
+.knopf-hell:hover::after { background: #FCE5CF; }
 
 /* ---------- Bearbeiten-Dialog ---------- */
 .editor {
@@ -505,8 +590,6 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
 .editor-info { margin: 0 0 10px; font-size: .95rem; }
 .editor-knoepfe { display: flex; flex-wrap: wrap; gap: 10px; }
 .editor-knoepfe .knopf { flex: 1 1 140px; padding: 0 14px; min-height: 50px; font-size: 1.05rem; }
-.knopf-hell { background: var(--creme); color: var(--terrakotta-dunkel); border: 3px solid var(--terrakotta-dunkel); }
-.knopf-hell:hover { background: var(--apricot-hell); }
 
 .ed-tipp { margin: 0 0 14px; font-size: .95rem; color: var(--schoko-weich); }
 .ed-bereich {
@@ -602,11 +685,12 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
    HANDY-ANPASSUNGEN
    ============================================================ */
 @media (max-width: 480px) {
-  .seite { padding: 12px 12px 32px; }
-  .karte { padding: 18px; }
-  .umschalter [role="tab"] { flex-direction: column; gap: 3px; font-size: .98rem; min-height: 64px; }
-  .umschalter [role="tab"] svg { width: 24px; height: 24px; }
-  .hinweis { flex-direction: column; gap: 8px; }
+  .px-box { padding: calc(var(--linie) + var(--rand) + 3 * var(--px)); }
+  .umschalter [role="tab"] { flex-direction: column; gap: var(--px); font-size: 1.05rem; }
+  .reiter { font-size: 1.15rem; }
+  /* Platz für das Zahnrad über Ronjas Ohren */
+  .kopf.px-box { padding-top: calc(var(--linie) + var(--rand) + 14 * var(--px)); }
+  .hinweis { flex-direction: column; gap: calc(2 * var(--px)); }
 }
 
 /* ============================================================
@@ -618,8 +702,8 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .bg { transition: opacity .3s linear !important; }
 }
+
 
 /* ============================================================
    RONJA – Teile für Animationen
@@ -633,11 +717,11 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
 #ronja.blinzelt #augen-offen { visibility: hidden; }
 #ronja.blinzelt #augen-zu    { visibility: visible; }
 
-/* Hecheln: Maul auf/zu im schnellen Takt */
-#ronja.hechelt #maul-offen { animation: bild-a .36s steps(1) infinite; }
-#ronja.hechelt #maul-zu    { animation: bild-b .36s steps(1) infinite; }
-@keyframes bild-a { 0% { visibility: visible; } 50% { visibility: hidden; } }
-@keyframes bild-b { 0% { visibility: hidden; }  50% { visibility: visible; } }
+/* Hecheln: ruhig – Zunge lange draußen (0,9 s), Maul kurz zu (0,3 s) */
+#ronja.hechelt #maul-offen { animation: bild-a 1.2s steps(1) infinite; }
+#ronja.hechelt #maul-zu    { animation: bild-b 1.2s steps(1) infinite; }
+@keyframes bild-a { 0% { visibility: visible; } 75% { visibility: hidden; } }
+@keyframes bild-b { 0% { visibility: hidden; }  75% { visibility: visible; } }
 
 /* Schwanzwedeln: links – Mitte – rechts – Mitte */
 #ronja.wedelt #rute-links  { animation: rute-1 .48s steps(1) infinite; }
