@@ -47,19 +47,22 @@
   function icon(name, klasse) {
     return '<svg' + (klasse ? ' class="' + klasse + '"' : "") + ' aria-hidden="true"><use href="#i-' + sicher(name || "pfoten") + '"/></svg>';
   }
+  // Pixelbilder: [Datei in grafiken/, Breite, Höhe in Pixeln, ganzzahliger Vergrößerungsfaktor, Beschreibung]
   var BILDER = {
-    fnoet: "Gezeichnetes Stofftier Fnöt: senfgelbes Plüschtier mit langer Rüsselnase und cremefarbenen Kuschelohren",
-    dose: "Gezeichnete, geöffnete Dose Nassfutter mit Pfotenabdruck auf dem Etikett",
-    sack: "Gezeichneter Sack Trockenfutter mit Pfotenabdrücken und ein paar Kroketten",
-    kekse: "Gezeichnete Hundekekse in Form von Knochen, Herz und Pfote",
-    korb: "Gezeichnetes, gemütliches Hundebett mit weichem Kissen"
+    fnoet: ["Fnoet.png", 86, 74, 2, "Pixelbild vom Stofftier Fnöt: senfgelbes Plüschtier mit langer Rüsselnase und cremefarbenen Kuschelohren"],
+    dose: ["nassfutter.png", 50, 86, 2, "Pixelbild einer geöffneten Dose Nassfutter mit Hundegesicht auf dem Etikett"],
+    sack: ["trockenfutter.png", 81, 112, 2, "Pixelbild eines Sacks Trockenfutter mit Pfotenabdrücken"],
+    kekse: ["snack.png", 31, 33, 4, "Pixelbild eines Hundekekses in Pfotenform"],
+    korb: ["bett.png", 49, 42, 3, "Pixelbild eines runden, blauen Hundebetts mit Pfotenmuster"],
+    keule: ["hühnerbein.png", 30, 29, 4, "Pixelbild eines Hühnerbeins"]
   };
 
   function karteHtml(k) {
     var farbe = k.farbe || "creme";
     var h = '<article class="karte farbe-' + sicher(farbe) + (k.bild ? " mit-bild" : "") + '">';
-    if (k.bild && BILDER[k.bild]) {
-      h += '<svg class="karten-bild" viewBox="0 0 230 160" role="img" aria-label="' + sicher(BILDER[k.bild]) + '"><use href="#bild-' + sicher(k.bild) + '"/></svg>';
+    var b = BILDER[k.bild];
+    if (b) {
+      h += '<img class="karten-bild" src="grafiken/' + b[0] + '" width="' + b[1] * b[3] + '" height="' + b[2] * b[3] + '" alt="' + sicher(b[4]) + '">';
     }
     h += '<div class="karte-kopf"><span class="badge">' + icon(k.icon) + '</span><h3>' + zeile(k.titel);
     if (k.menge) h += ' <span class="menge">' + sicher(k.menge) + "</span>";
@@ -127,7 +130,7 @@
       "herz": "Herz", "info": "Info"
     },
     FARBEN: { "apricot": "Apricot", "senf": "Senfgelb", "creme": "Creme", "warnung": "Warnung (rot umrandet)", "nacht": "Nachtblau" },
-    BILDER: { "": "kein Bild", "dose": "Nassfutter-Dose", "sack": "Trockenfutter-Sack", "kekse": "Snack-Kekse", "korb": "Hundebett", "fnoet": "Fnöt" }
+    BILDER: { "": "kein Bild", "dose": "Nassfutter-Dose", "sack": "Trockenfutter-Sack", "kekse": "Snack-Kekse", "korb": "Hundebett", "fnoet": "Fnöt", "keule": "Hühnerbein" }
   };
 
   /* ---------- 2. Toggle (Tabs) ---------- */

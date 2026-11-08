@@ -68,7 +68,7 @@ window.RONJA_INHALTE = {
       {
         "icon": "keule",
         "farbe": "apricot",
-        "bild": "",
+        "bild": "keule",
         "titel": "Ich bin daheim - Gib mir ein Hühnerbein!",
         "menge": "",
         "text": "**Nach dem Gassigehen** gibt’s ein Hühnerbein. Das Highlight des Tages!",

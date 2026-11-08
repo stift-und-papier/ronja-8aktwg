@@ -35,8 +35,8 @@
 
   /* ---------- Blinzeln: alle 3–7 Sekunden ---------- */
   function blinzeln() {
-    einmal("blinzelt", 220);
-    if (Math.random() < 0.2) setTimeout(function () { einmal("blinzelt", 220); }, 320); // manchmal doppelt
+    einmal("blinzelt", 150);
+    if (Math.random() < 0.2) setTimeout(function () { einmal("blinzelt", 150); }, 300); // manchmal doppelt
     setTimeout(blinzeln, zufall(3000, 7000));
   }
 
@@ -57,8 +57,7 @@
   /* ---------- Reaktion beim Wechsel der Tageszeit ---------- */
   document.addEventListener("ronja:reagieren", function () {
     phase("wedelt", 1400);
-    einmal("zuckt", 700);
-    if (Math.random() < 0.5) setTimeout(function () { einmal("blinzelt", 220); }, 250);
+    if (Math.random() < 0.5) setTimeout(function () { einmal("blinzelt", 150); }, 250);
   });
 
   // Start mit kleinem Versatz, damit nicht alles gleichzeitig beginnt
@@ -68,7 +67,7 @@
 
   // Ändert jemand die Einstellung, während die Seite offen ist → alles stoppen
   function aufraeumen() {
-    if (ruhig.matches) ronja.classList.remove("blinzelt", "hechelt", "wedelt", "zuckt");
+    if (ruhig.matches) ronja.classList.remove("blinzelt", "hechelt", "wedelt");
   }
   if (ruhig.addEventListener) ruhig.addEventListener("change", aufraeumen);
 })();
