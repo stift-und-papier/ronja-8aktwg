@@ -81,8 +81,6 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
   border-radius: var(--rund);
   padding: 22px;
   box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
 }
 
 /* ---------- Kopfbereich ---------- */
@@ -160,8 +158,6 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
   background: var(--creme-karte);
   border-radius: 999px;
   box-shadow: var(--schatten);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
 }
 .umschalter [role="tab"] {
   appearance: none;
@@ -308,18 +304,6 @@ body[data-zeit="abend"]  .bg-abend { opacity: 1; }
 .farbe-senf { background: rgba(249, 231, 181, 0.95); }
 .farbe-senf .badge { background: var(--senf); }
 .farbe-creme .badge { background: var(--apricot-hell); }
-
-.warnung {
-  background: rgba(255, 247, 236, 0.96);
-  border: 3px solid var(--terrakotta);
-}
-.warnung .badge { background: var(--terrakotta-dunkel); color: var(--creme); }
-.warnung h3 { color: var(--terrakotta-dunkel); }
-
-.nacht {
-  background: rgba(228, 230, 245, 0.95);
-}
-.nacht .badge { background: var(--nacht); color: #FFF3C9; }
 
 .hinweis {
   display: flex;

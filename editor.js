@@ -184,7 +184,7 @@
         neu("li", { text: "Klicke auf „Add file“ → „Upload files“." }),
         neu("li", { text: "Ziehe die Datei inhalte.js aus deinem Download-Ordner hinein. Sie muss genau „inhalte.js“ heißen (nicht „inhalte (1).js“)." }),
         neu("li", { text: "Klicke unten auf „Commit changes“." }),
-        neu("li", { text: "Nach 1–2 Minuten zeigt die Seite die neuen Texte für alle." })
+        neu("li", { text: "Nach bis zu 10 Minuten zeigt die Seite die neuen Texte für alle (Seite neu laden)." })
       ])
     ]);
     inhalt.prepend(anleitung);

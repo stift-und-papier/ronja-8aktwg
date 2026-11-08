@@ -23,16 +23,13 @@
   function kopie(o) { return JSON.parse(JSON.stringify(o)); }
 
   // Gibt es einen Entwurf aus dem Zahnrad? (nur auf diesem Gerät)
+  // Er gilt nur, solange die veröffentlichte Version dieselbe ist wie beim Bearbeiten.
+  var basis = JSON.stringify(original);
   var daten = kopie(original);
   try {
-    var gespeichert = localStorage.getItem(ENTWURF);
-    if (gespeichert) {
-      if (gespeichert === JSON.stringify(original)) {
-        localStorage.removeItem(ENTWURF);   // schon hochgeladen → Entwurf nicht mehr nötig
-      } else {
-        daten = JSON.parse(gespeichert);
-      }
-    }
+    var entwurf = JSON.parse(localStorage.getItem(ENTWURF) || "null");
+    if (entwurf && entwurf.basis === basis) daten = entwurf.daten;
+    else localStorage.removeItem(ENTWURF);   // veraltet oder schon hochgeladen
   } catch (e) { /* kein Speicher – egal */ }
 
   function sicher(t) {
@@ -104,19 +101,17 @@
     document.getElementById("vorhang-frage").textContent = v.frage || "Auf wen passt du auf?";
 
     var banner = document.getElementById("entwurf-banner");
-    if (banner) banner.hidden = JSON.stringify(daten) === JSON.stringify(original);
+    if (banner) banner.hidden = JSON.stringify(daten) === basis;
   }
   render();
 
   // Schnittstelle für den Bearbeiten-Dialog (editor.js)
   window.Ronja = {
     get daten() { return daten; },
-    original: original,
-    render: render,
     speichereEntwurf: function () {
       try {
-        if (JSON.stringify(daten) === JSON.stringify(original)) localStorage.removeItem(ENTWURF);
-        else localStorage.setItem(ENTWURF, JSON.stringify(daten));
+        if (JSON.stringify(daten) === basis) localStorage.removeItem(ENTWURF);
+        else localStorage.setItem(ENTWURF, JSON.stringify({ basis: basis, daten: daten }));
       } catch (e) { /* egal */ }
       render();
     },
