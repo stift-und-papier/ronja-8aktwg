@@ -403,7 +403,7 @@ body[data-zeit="abend"]  { --seite: #FBF1E8; --punkt: #DACBD3; }
   padding: var(--px) calc(2 * var(--px));
   background: var(--schoko);
   color: var(--creme);
-  font: 700 .9rem/1 var(--schrift-pixel);
+  font: 800 .95rem/1.1 var(--schrift);   /* Systemschrift: Zahlen besser lesbar als in Pixelschrift */
   clip-path: polygon(var(--linie) 0, calc(100% - var(--linie)) 0, calc(100% - var(--linie)) var(--linie), 100% var(--linie), 100% calc(100% - var(--linie)), calc(100% - var(--linie)) calc(100% - var(--linie)), calc(100% - var(--linie)) 100%, var(--linie) 100%, var(--linie) calc(100% - var(--linie)), 0 calc(100% - var(--linie)), 0 var(--linie), var(--linie) var(--linie));
 }
 
