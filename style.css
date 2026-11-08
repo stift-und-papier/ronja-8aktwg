@@ -177,9 +177,9 @@ body[data-zeit="abend"]  .himmel-abend { opacity: 1; }
 @property --seite { syntax: "<color>"; inherits: true; initial-value: #FFF4E4; }
 @property --punkt { syntax: "<color>"; inherits: true; initial-value: #E9D3B8; }
 body { transition: --seite 1.2s ease, --punkt 1.2s ease; }
-body[data-zeit="morgen"] { --seite: #FFF3E6; --punkt: #EBD0C0; }
+body[data-zeit="morgen"] { --seite: #FCEBE3; --punkt: #EBC6BC; }   /* Pfirsich-Rosé wie der Morgenhimmel */
 body[data-zeit="mittag"] { --seite: #FFF6E2; --punkt: #E5D5AC; }
-body[data-zeit="abend"]  { --seite: #FBF1E8; --punkt: #DACBD3; }
+body[data-zeit="abend"]  { --seite: #EFE6F1; --punkt: #CDBDD8; }   /* zartes Dämmer-Flieder */
 
 /* ============================================================
    PIXEL-KASTEN: Außenlinie + dicker Rahmen + helle Füllung,
